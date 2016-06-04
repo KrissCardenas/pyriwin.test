@@ -20,7 +20,7 @@ public class Main {
 		System.out.println("Hello World");
 
 		SlackSession session = SlackSessionFactory
-				.createWebSocketSlackSession("xoxb-47885928065-szMPXXrVm9BLEHhjQ8ZpqbfI");
+				.createWebSocketSlackSession("token_here");
 		try {
 			session.connect();
 
