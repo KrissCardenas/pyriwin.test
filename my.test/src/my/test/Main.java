@@ -2,12 +2,15 @@ package my.test;
 
 import java.io.IOException;
 
+import com.ullink.slack.simpleslackapi.SlackAttachment;
 import com.ullink.slack.simpleslackapi.SlackChannel;
 import com.ullink.slack.simpleslackapi.SlackMessageHandle;
 import com.ullink.slack.simpleslackapi.SlackSession;
 import com.ullink.slack.simpleslackapi.SlackUser;
+import com.ullink.slack.simpleslackapi.events.ReactionAdded;
 import com.ullink.slack.simpleslackapi.events.SlackMessagePosted;
 import com.ullink.slack.simpleslackapi.impl.SlackSessionFactory;
+import com.ullink.slack.simpleslackapi.listeners.ReactionAddedListener;
 import com.ullink.slack.simpleslackapi.listeners.SlackMessagePostedListener;
 import com.ullink.slack.simpleslackapi.replies.SlackChannelReply;
 
@@ -17,7 +20,7 @@ public class Main {
 		System.out.println("Hello World");
 
 		SlackSession session = SlackSessionFactory
-				.createWebSocketSlackSession("xoxb-47885928065-Fxo19ntsklYlCuqvH0KGwfto");
+				.createWebSocketSlackSession("xoxb-47885928065-szMPXXrVm9BLEHhjQ8ZpqbfI");
 		try {
 			session.connect();
 
@@ -51,10 +54,30 @@ public class Main {
 					session.sendMessage(channel, event.getMessageContent() + " toi même ", null);
 				}
 			});
+
+			session.addReactionAddedListener(new ReactionAddedListener() {
+
+				public void onEvent(ReactionAdded pReaction, SlackSession pSession) {
+					System.out.println("Hello" + pReaction.getEmojiName());
+					SlackUser lUser = pReaction.getUser();
+					
+					SlackMessageHandle<SlackChannelReply> reply = pSession.openDirectMessageChannel(lUser);
+
+					// get the channel
+					SlackChannel channel = reply.getReply().getSlackChannel();
+
+					SlackAttachment lAttachment = new SlackAttachment("title", "fallback", "test", "pretext");
+					// send the message to this channel
+					pSession.sendMessage(channel, pReaction.getEmojiName() + " yourself ", null);
+					
+				}
+			});
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		
 	}
 
 }
