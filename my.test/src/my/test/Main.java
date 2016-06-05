@@ -32,7 +32,7 @@ public class Main {
 	private static final String TOPMONTH_COMMAND = "topmonth";
 	private static final String TOPWEEK_COMMAND = "topweek";
 	public static final String HELP_COMMAND = "help";
-	public static final String BOT_TOKEN = "xoxb-48187245539-k1fwXOhT0AqDy63dteQo2IN7";
+	public static final String BOT_TOKEN = "TOKEN_HERE";
 	public static final String BOT_NAME = "@saga";
 
 	public static void main(String[] args) {
@@ -173,7 +173,7 @@ public class Main {
 
 		} else {
 
-			pSession.sendMessage(lReplyingChannel, "Type Help to know how to interact with me", null);
+			pSession.sendMessage(lReplyingChannel, "Type `help` to know how to interact with me", null);
 		}
 
 	}
