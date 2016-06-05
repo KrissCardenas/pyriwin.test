@@ -16,6 +16,11 @@
 			<artifactId>simple-slack-api</artifactId>
 			<version>0.5.1</version>
 		</dependency>
+<!-- 		<dependency> -->
+<!-- 			<groupId>org.mongodb</groupId> -->
+<!-- 			<artifactId>mongodb-driver</artifactId> -->
+<!-- 			<version>3.2.2</version> -->
+<!-- 		</dependency> -->
 	</dependencies>
 	<build>
 		<testSourceDirectory>my.test/src</testSourceDirectory>
